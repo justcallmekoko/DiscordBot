@@ -27,10 +27,18 @@ class ClearWeather():
 	async def run(self, message):
 		if message.content.split(' ')[1].lower() == 'on' and not self.looping:
 			print ('Running clear weather on...')
+			with MCRcon("127.0.0.1", PASSW) as mcr:
+                                resp = mcr.command('/say clear weather enabled')
+                                #print (resp)
+                                mcr.disconnect()
 			self.looping = True
 			self.loop_func.start()
 		elif message.content.split(' ')[1].lower() == 'off' and self.looping:
 			print ('Running clear weather off...')
+			with MCRcon("127.0.0.1", PASSW) as mcr:
+                                resp = mcr.command('/say clear weather disabled')
+                                #print (resp)
+                                mcr.disconnect()
 			self.looping = False
 			self.loop_func.stop()
 		elif message.content.split(' ')[1].lower() == 'status':

@@ -28,11 +28,20 @@ class LavaArrows():
 	async def run(self, message):
 		if message.content.split(' ')[1].lower() == 'on' and not self.looping:
 			print ('Running lava arrows on...')
+			with MCRcon("127.0.0.1", PASSW) as mcr:
+                                resp = mcr.command('/say lava arrows enabled')
+                                #print (resp)
+                                mcr.disconnect()
+
 			self.looping = True
 			self.loop_func.start()
 			await message.channel.send(message.author.mention + ' !lavaarrows enabled')
 		elif message.content.split(' ')[1].lower() == 'off' and self.looping:
 			print ('Running lava arrows off...')
+			with MCRcon("127.0.0.1", PASSW) as mcr:
+                                resp = mcr.command('/say lava arrows disabled')
+                                #print (resp)
+                                mcr.disconnect()
 			self.looping = False
 			self.loop_func.stop()
 			await message.channel.send(message.author.mention + ' !lavaarrows disabled')
