@@ -1,7 +1,10 @@
 import os
 import sys
 import discord
+import time
 from dotenv import load_dotenv
+from mcrcon import MCRcon
+from discord.ext.tasks import loop
 import random
 import pkgutil
 
@@ -20,6 +23,7 @@ T  = '\033[93m' # tan
 load_dotenv()
 TOKEN = os.getenv('DISCORD_TOKEN')
 GUILD = os.getenv('DISCORD_GUILD')
+PASSW = os.getenv('RCON_PASSWORD')
 
 global obj_list
 obj_list = []
@@ -29,6 +33,20 @@ modules = pkgutil.iter_modules(path=[path])
 
 class CustomClient(discord.Client):
 	global obj_list
+
+	# Loop that will just run in the background
+#	@loop(seconds = 0.1)
+#	async def main(self):
+#		for obj in obj_list:
+#			if obj.loop:
+#				print ('Executing ' + str(obj.name))
+#				await obj.run('loop on')
+#			else:
+#				print ('Not executing ' + str(obj.name))
+
+#		with MCRcon("127.0.0.1", PASSW) as mcr:
+#			resp = mcr.command('/weather clear')
+#			print (resp)
 
 	# Bot connects to discord server
 	async def on_ready(self):
@@ -126,11 +144,16 @@ class CustomClient(discord.Client):
 		for obj in obj_list:
 			if cmd == obj.name:
 				found = True
+				if obj.admin and not admin:
+					await message.channel.send(message.author.mention + ' ' + str(cmd) + ' only admins may run this command')
+					break
 				await obj.run(message)
 				break
 
 		if list(str(cmd))[0] == '!' and not found:
 			await message.channel.send(message.author.mention + ' ' + str(cmd) + ' is not a recognized command')
+
+
 
 def get_class_name(mod_name):
 	output = ""
@@ -153,4 +176,5 @@ for loader, mod_name, ispkg in modules:
 		obj_list.append(instance)
 
 client = CustomClient()
+#client.main.start()
 client.run(TOKEN)
