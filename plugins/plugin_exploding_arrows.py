@@ -20,7 +20,7 @@ class ExplodingArrows():
 	async def loop_func(self):
 		if self.looping:
 			with MCRcon("127.0.0.1", PASSW) as mcr:
-				resp = mcr.command('/execute at @e[type=arrow,nbt={inGround:1b}] run summon tnt')
+				resp = mcr.command('/execute at @e[type=arrow,nbt={inGround:1b,pickup:2b}] run summon tnt')
 				resp = mcr.command('/kill @e[type=arrow,nbt={inGround:1b}]')
 				#print (resp)
 				mcr.disconnect()
@@ -30,9 +30,10 @@ class ExplodingArrows():
 			print ('Running Exploding arrows on...')
 
 			with MCRcon("127.0.0.1", PASSW) as mcr:
-                                resp = mcr.command('/say Exploding arrows enabled')
-                                #print (resp)
-                                mcr.disconnect()
+				#resp = mcr.command('/say Exploding arrows enabled')
+				resp = mcr.command('/tellraw @a [{\"text\":\"exploding arrows enabled\",\"color\":\"green\"}]')
+				#print (resp)
+				mcr.disconnect()
 
 			self.looping = True
 			self.loop_func.start()
@@ -41,9 +42,10 @@ class ExplodingArrows():
 			print ('Running Exploding arrows off...')
 
 			with MCRcon("127.0.0.1", PASSW) as mcr:
-                                resp = mcr.command('/say Exploding arrows disabled')
-                                #print (resp)
-                                mcr.disconnect()
+				#resp = mcr.command('/say Exploding arrows disabled')
+				resp = mcr.command('/tellraw @a [{\"text\":\"exploding arrows disabled\",\"color\":\"red\"}]')
+				#print (resp)
+				mcr.disconnect()
 
 			self.looping = False
 			self.loop_func.stop()

@@ -20,7 +20,7 @@ class LavaArrows():
 	async def loop_func(self):
 		if self.looping:
 			with MCRcon("127.0.0.1", PASSW) as mcr:
-				resp = mcr.command('/execute at @e[type=arrow,nbt={inGround:1b}] run fill ~0 ~0 ~0 ~0 ~0 ~0 lava')
+				resp = mcr.command('/execute at @e[type=arrow,nbt={inGround:1b,pickup:2b}] run fill ~0 ~0 ~0 ~0 ~0 ~0 lava')
 				resp = mcr.command('/kill @e[type=arrow,nbt={inGround:1b}]')
 				#print (resp)
 				mcr.disconnect()
@@ -29,9 +29,10 @@ class LavaArrows():
 		if message.content.split(' ')[1].lower() == 'on' and not self.looping:
 			print ('Running lava arrows on...')
 			with MCRcon("127.0.0.1", PASSW) as mcr:
-                                resp = mcr.command('/say lava arrows enabled')
-                                #print (resp)
-                                mcr.disconnect()
+				#resp = mcr.command('/say lava arrows enabled')
+				resp = mcr.command('/tellraw @a [{\"text\":\"lava arrows enabled\",\"color\":\"green\"}]')
+				#print (resp)
+				mcr.disconnect()
 
 			self.looping = True
 			self.loop_func.start()
@@ -39,9 +40,10 @@ class LavaArrows():
 		elif message.content.split(' ')[1].lower() == 'off' and self.looping:
 			print ('Running lava arrows off...')
 			with MCRcon("127.0.0.1", PASSW) as mcr:
-                                resp = mcr.command('/say lava arrows disabled')
-                                #print (resp)
-                                mcr.disconnect()
+				#resp = mcr.command('/say lava arrows disabled')
+				resp = mcr.command('/tellraw @a [{\"text\":\"lava arrows disabled\",\"color\":\"red\"}]')
+				#print (resp)
+				mcr.disconnect()
 			self.looping = False
 			self.loop_func.stop()
 			await message.channel.send(message.author.mention + ' !lavaarrows disabled')
