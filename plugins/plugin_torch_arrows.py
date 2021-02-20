@@ -38,7 +38,8 @@ class TorchArrows():
 
 			self.looping = False
 			self.loop_func.stop()
-			await message.channel.send(message.author.mention + ' !torcharrows disabled')
+			try:
+				await message.channel.send(message.author.mention + ' !torcharrows disabled')
 
 	async def run(self, message):
 		#Cheer toggle
@@ -59,7 +60,8 @@ class TorchArrows():
 
 			self.looping = True
 			self.loop_func.start()
-			await message.channel.send(message.author.mention + ' !torcharrows enabled')
+			try:
+				await message.channel.send(message.author.mention + ' !torcharrows enabled')
 		elif message.content.split(' ')[1].lower() == 'off' and self.looping:
 			await self.stop(message)
 			
