@@ -51,6 +51,7 @@ sock.send(f"PASS {TWITT}\n".encode('utf-8'))
 sock.send(f"NICK {nickname}\n".encode('utf-8'))
 sock.send(f"JOIN {channel}\n".encode('utf-8'))
 
+# Functions to work with twitch
 def threaded_twitch():
 	global sock
 	global obj_list
@@ -61,6 +62,25 @@ def threaded_twitch():
 		resp = sock.recv(2048).decode('utf-8')
 
 		print(resp)
+		
+		#Parse cheers
+		for sub in str(resp).split(' '):
+			if 'Cheer' in sub:
+				cheer_amount = sub.replace('Cheer')
+				
+		# Stop all plugins first
+		for obj in obj_list:
+			obj.stop()
+			
+		# Find the plugin with the cheer amount
+		for obj in obj_list:
+			if cheer_amount == obj.cheer:
+				found = True
+				#if obj.admin and not admin:
+				#	await message.channel.send(message.author.mention + ' ' + str(cmd) + ' only admins may run this command')
+				#	break
+				await obj.run(obj.name)
+				break
 
 class CustomClient(discord.Client):
 	global obj_list
