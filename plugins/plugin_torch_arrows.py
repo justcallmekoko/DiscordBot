@@ -42,8 +42,12 @@ class TorchArrows():
 
 	async def run(self, message):
 		#Cheer toggle
-		if (' on' not in message.content) and (' off' not in message.content) and (' status' not in message.content):
-			message.content = message.content + ' on'
+		try:
+			if (' on' not in message.content) and (' off' not in message.content) and (' status' not in message.content):
+				message.content = message.content + ' on'
+		Except:
+			if (' on' not in message) and (' off' not in message) and (' status' not in message):
+				message.content = message.content + ' on'
 			
 		if message.content.split(' ')[1].lower() == 'on' and not self.looping:
 			print ('Running torch arrows on...')
