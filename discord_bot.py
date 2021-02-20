@@ -79,9 +79,9 @@ def threaded_twitch():
 		if contained_cheer:
 			# Stop all plugins first
 			for obj in obj_list:
-				loop = asyncio.get_event_loop()
-				loop.create_task(obj.stop(resp))
-				#obj.stop(resp)
+				#loop = asyncio.get_event_loop()
+				#loop.create_task(obj.stop(resp))
+				await obj.stop(resp)
 				
 			# Find the plugin with the cheer amount
 			for obj in obj_list:
@@ -91,9 +91,9 @@ def threaded_twitch():
 					#	await message.channel.send(message.author.mention + ' ' + str(cmd) + ' only admins may run this command')
 					#	break
 					
-					loop = asyncio.get_event_loop()
-					loop.create_task(obj.run(obj.name))
-					#obj.run(obj.name)
+					#loop = asyncio.get_event_loop()
+					#loop.create_task(obj.run(obj.name))
+					await obj.run(obj.name)
 					break
 
 class CustomClient(discord.Client):
