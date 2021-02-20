@@ -47,7 +47,10 @@ class TorchArrows():
 		print ('Running torch arrows on...')
 		with MCRcon("127.0.0.1", PASSW) as mcr:
 			#resp = mcr.command('/say torch arrows enabled')
-			resp = mcr.command('/tellraw @a [{\"text\":\"torch arrows enabled\",\"color\":\"green\"}]')
+			try:
+				resp = mcr.command('/tellraw @a [{\"text\":\"' + message + ': torch arrows enabled\",\"color\":\"green\"}]')
+			except Exception as e:
+				resp = mcr.command('/tellraw @a [{\"text\":\"torch arrows enabled\",\"color\":\"green\"}]')
 			#print (resp)
 			mcr.disconnect()
 
@@ -66,10 +69,10 @@ class TorchArrows():
 				message.content = message.content + ' on'
 		except Exception as e:
 			if (' on' not in message) and (' off' not in message) and (' status' not in message):
-				message = message + ' on'
+				#message = message + ' on'
 				print('Running the shit')
 				did_run = True
-				await self.toggle(message)
+				await self.toggle(message.replace(':', ''))
 				return
 		try:
 			if message.content.split(' ')[1].lower() == 'on' and not self.looping:

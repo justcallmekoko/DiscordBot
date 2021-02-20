@@ -92,7 +92,7 @@ def threaded_twitch():
 					#	await message.channel.send(message.author.mention + ' ' + str(cmd) + ' only admins may run this command')
 					#	break
 					
-					run_run = asyncio.run(obj.run(obj.name))
+					run_run = asyncio.run(obj.run(obj.name + ' ' + str(resp).split('!')[0])
 					#await obj.run(obj.name)
 					break
 
