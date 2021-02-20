@@ -69,6 +69,13 @@ class CustomClient(discord.Client):
 #			resp = mcr.command('/weather clear')
 #			print (resp)
 
+	async def main(self):
+		print('Waiting for twitch shit...')
+		while True:
+			resp = sock.recv(2048).decode('utf-8')
+
+			print(resp)
+
 	# Bot connects to discord server
 	async def on_ready(self):
 		print (f'{self.user} has connected to Discord!')
@@ -91,11 +98,6 @@ class CustomClient(discord.Client):
 
 		print ()
 
-		print('Waiting for twitch shit...')
-		while True:
-			resp = sock.recv(2048).decode('utf-8')
-
-			print(resp)
 
 
 	# Member joins the discord server
