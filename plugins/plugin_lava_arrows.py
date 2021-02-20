@@ -37,36 +37,58 @@ class LavaArrows():
 				mcr.disconnect()
 			self.looping = False
 			self.loop_func.stop()
-			await message.channel.send(message.author.mention + ' !lavaarrows disabled')
-
-	async def run(self, message):
-		#Cheer toggle
-		try:
-			if (' on' not in message.content) and (' off' not in message.content) and (' status' not in message.content):
-				message.content = message.content + ' on'
-		except:
-			if (' on' not in message) and (' off' not in message) and (' status' not in message):
-				message = message + ' on'
-			
-		if message.content.split(' ')[1].lower() == 'on' and not self.looping:
-			print ('Running lava arrows on...')
+			try:
+				await message.channel.send(message.author.mention + ' !lavaarrows disabled')
+			except:
+				boop = True
+				
+	# Function to activate loop
+	async def toggle(self, message):
+		print ('Running lava arrows on...')
 			with MCRcon("127.0.0.1", PASSW) as mcr:
 				#resp = mcr.command('/say lava arrows enabled')
-				resp = mcr.command('/tellraw @a [{\"text\":\"lava arrows enabled\",\"color\":\"green\"}]')
+				try:
+					resp = mcr.command('/tellraw @a [{\"text\":\"' + message + ': lava arrows enabled\",\"color\":\"green\"}]')
+				except Exception as e:
+					resp = mcr.command('/tellraw @a [{\"text\":\"lava arrows enabled\",\"color\":\"green\"}]')
 				#print (resp)
 				mcr.disconnect()
 
 			self.looping = True
 			self.loop_func.start()
-			await message.channel.send(message.author.mention + ' !lavaarrows enabled')
-		elif message.content.split(' ')[1].lower() == 'off' and self.looping:
-			await self.stop()
 			
-		elif message.content.split(' ')[1].lower() == 'status':
-			if self.looping:
-				await message.channel.send(message.author.mention + ' !lavaarrows is on')
-			else:
-				await message.channel.send(message.author.mention + ' !lavaarrows is off')
+			try:
+				await message.channel.send(message.author.mention + ' !lavaarrows enabled')
+			except:
+				boop = True
 
-		else:
-			await message.channel.send(message.author.mention + ' ' + str(message.content) + ' is not a recognized command')
+	async def run(self, message):
+		#Check if this was executed with cheer
+		did_run = False
+		try:
+			if (' on' not in message.content) and (' off' not in message.content) and (' status' not in message.content):
+				message.content = message.content + ' on'
+		except Exception as e:
+			if (' on' not in message) and (' off' not in message) and (' status' not in message):
+				#message = message + ' on'
+				print('Running the shit')
+				did_run = True
+				await self.toggle(message.split(' ')[1])
+				return
+		try:	
+			if message.content.split(' ')[1].lower() == 'on' and not self.looping:
+				await self.toggle(message)
+				
+			elif message.content.split(' ')[1].lower() == 'off' and self.looping:
+				await self.stop(message)
+				
+			elif message.content.split(' ')[1].lower() == 'status':
+				if self.looping:
+					await message.channel.send(message.author.mention + ' !lavaarrows is on')
+				else:
+					await message.channel.send(message.author.mention + ' !lavaarrows is off')
+
+			else:
+				await message.channel.send(message.author.mention + ' ' + str(message.content) + ' is not a recognized command')
+		except Exception as e:
+			this_is_fucking_bullshit = True

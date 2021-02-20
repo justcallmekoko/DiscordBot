@@ -43,10 +43,12 @@ class TorchArrows():
 			except:
 				boop = True
 				
+	# Function to activate loop
 	async def toggle(self, message):
 		print ('Running torch arrows on...')
 		with MCRcon("127.0.0.1", PASSW) as mcr:
-			#resp = mcr.command('/say torch arrows enabled')
+		
+			# Send notification in minecraft
 			try:
 				resp = mcr.command('/tellraw @a [{\"text\":\"' + message + ': torch arrows enabled\",\"color\":\"green\"}]')
 			except Exception as e:
@@ -56,13 +58,16 @@ class TorchArrows():
 
 		self.looping = True
 		self.loop_func.start()
+		
+		# Send notification in discord
 		try:
 			await message.channel.send(message.author.mention + ' !torcharrows enabled')
 		except:
 			boop = True
 
 	async def run(self, message):
-		#Cheer toggle
+	
+		#Check if this was executed with cheer
 		did_run = False
 		try:
 			if (' on' not in message.content) and (' off' not in message.content) and (' status' not in message.content):
@@ -74,6 +79,8 @@ class TorchArrows():
 				did_run = True
 				await self.toggle(message.split(' ')[1])
 				return
+				
+		# Run from discord command
 		try:
 			if message.content.split(' ')[1].lower() == 'on' and not self.looping:
 				await self.toggle(message)
