@@ -63,24 +63,29 @@ def threaded_twitch():
 
 		print(resp)
 		
+		contained_cheer = False
+		
 		#Parse cheers
 		for sub in str(resp).split(' '):
 			if 'Cheer' in sub:
 				cheer_amount = sub.replace('Cheer')
-				
-		# Stop all plugins first
-		for obj in obj_list:
-			obj.stop(resp)
-			
-		# Find the plugin with the cheer amount
-		for obj in obj_list:
-			if cheer_amount == obj.cheer:
-				found = True
-				#if obj.admin and not admin:
-				#	await message.channel.send(message.author.mention + ' ' + str(cmd) + ' only admins may run this command')
-				#	break
-				obj.run(obj.name)
+				contained_cheer - True
 				break
+				
+		if contained_cheer:
+			# Stop all plugins first
+			for obj in obj_list:
+				obj.stop(resp)
+				
+			# Find the plugin with the cheer amount
+			for obj in obj_list:
+				if cheer_amount == obj.cheer:
+					found = True
+					#if obj.admin and not admin:
+					#	await message.channel.send(message.author.mention + ' ' + str(cmd) + ' only admins may run this command')
+					#	break
+					obj.run(obj.name)
+					break
 
 class CustomClient(discord.Client):
 	global obj_list
