@@ -70,7 +70,7 @@ def threaded_twitch():
 				
 		# Stop all plugins first
 		for obj in obj_list:
-			obj.stop()
+			obj.stop(resp)
 			
 		# Find the plugin with the cheer amount
 		for obj in obj_list:
