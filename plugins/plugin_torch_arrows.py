@@ -69,7 +69,7 @@ class TorchArrows():
 				message = message + ' on'
 				print('Running the shit')
 				did_run = True
-				await self.run(message)
+				await self.toggle(message)
 				return
 		try:
 			if message.content.split(' ')[1].lower() == 'on' and not self.looping:
