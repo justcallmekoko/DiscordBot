@@ -56,7 +56,7 @@ class TorchArrows():
 			self.loop_func.start()
 			await message.channel.send(message.author.mention + ' !torcharrows enabled')
 		elif message.content.split(' ')[1].lower() == 'off' and self.looping:
-			self.stop()
+			await self.stop()
 			
 		elif message.content.split(' ')[1].lower() == 'status':
 			if self.looping:
