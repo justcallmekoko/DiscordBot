@@ -69,6 +69,7 @@ class CustomClient(discord.Client):
 #			resp = mcr.command('/weather clear')
 #			print (resp)
 
+	@loop(seconds = 0.1)
 	async def main(self):
 		print('Waiting for twitch shit...')
 		while True:
