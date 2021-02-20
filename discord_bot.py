@@ -79,13 +79,15 @@ def threaded_twitch():
 		if contained_cheer:
 			# Stop all plugins first
 			for obj in obj_list:
+				print('Stopping: ' + str(obj.name))
 				run_stop = asyncio.run(obj.stop(resp))
 				#await obj.stop(resp)
 				
 			# Find the plugin with the cheer amount
 			for obj in obj_list:
-				if cheer_amount == obj.cheer:
+				if int(cheer_amount) == obj.cheer:
 					found = True
+					print('Found plugin: ' + obj.name)
 					#if obj.admin and not admin:
 					#	await message.channel.send(message.author.mention + ' ' + str(cmd) + ' only admins may run this command')
 					#	break
