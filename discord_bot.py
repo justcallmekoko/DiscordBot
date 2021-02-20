@@ -21,6 +21,10 @@ C  = '\033[36m' # cyan
 GR = '\033[37m' # gray
 T  = '\033[93m' # tan
 
+global TWITT
+global twitch_server
+global sock
+
 load_dotenv()
 TWITT = os.getenv('TWITCH_TOKEN')
 TOKEN = os.getenv('DISCORD_TOKEN')
@@ -48,6 +52,8 @@ sock.send(f"JOIN {channel}\n".encode('utf-8'))
 
 class CustomClient(discord.Client):
 	global obj_list
+    global TWITT
+    global sock
 
 	# Loop that will just run in the background
 #	@loop(seconds = 0.1)
@@ -84,6 +90,15 @@ class CustomClient(discord.Client):
 			print('\t' + role.name)
 
 		print ()
+        
+        print('Waiting for twitch shit...')
+        while True:
+            resp = sock.recv(2048)decode('utf-8')
+            
+            print(resp)
+        
+        
+        
 
 	# Member joins the discord server
 	async def on_member_join(self, member):
@@ -193,8 +208,3 @@ for loader, mod_name, ispkg in modules:
 client = CustomClient()
 #client.main.start()
 client.run(TOKEN)
-
-print('Waiting for Twitch shit')
-
-while True:
-    continue
