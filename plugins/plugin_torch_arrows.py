@@ -60,6 +60,7 @@ class TorchArrows():
 
 	async def run(self, message):
 		#Cheer toggle
+		did_run = False
 		try:
 			if (' on' not in message.content) and (' off' not in message.content) and (' status' not in message.content):
 				message.content = message.content + ' on'
@@ -67,20 +68,21 @@ class TorchArrows():
 			if (' on' not in message) and (' off' not in message) and (' status' not in message):
 				message = message + ' on'
 				print('Running the shit')
+				did_run = True
 				await self.run(message)
 				return
-			
-		if message.content.split(' ')[1].lower() == 'on' and not self.looping:
-			await self.toggle(message)
+		if not did_run:
+			if message.content.split(' ')[1].lower() == 'on' and not self.looping:
+				await self.toggle(message)
+					
+			elif message.content.split(' ')[1].lower() == 'off' and self.looping:
+				await self.stop(message)
 				
-		elif message.content.split(' ')[1].lower() == 'off' and self.looping:
-			await self.stop(message)
-			
-		elif message.content.split(' ')[1].lower() == 'status':
-			if self.looping:
-				await message.channel.send(message.author.mention + ' !torcharrows is on')
-			else:
-				await message.channel.send(message.author.mention + ' !torcharrows is off')
+			elif message.content.split(' ')[1].lower() == 'status':
+				if self.looping:
+					await message.channel.send(message.author.mention + ' !torcharrows is on')
+				else:
+					await message.channel.send(message.author.mention + ' !torcharrows is off')
 
-		else:
-			await message.channel.send(message.author.mention + ' ' + str(message.content) + ' is not a recognized command')
+			else:
+				await message.channel.send(message.author.mention + ' ' + str(message.content) + ' is not a recognized command')
