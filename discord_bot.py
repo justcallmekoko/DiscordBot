@@ -52,10 +52,11 @@ sock.send(f"NICK {nickname}\n".encode('utf-8'))
 sock.send(f"JOIN {channel}\n".encode('utf-8'))
 
 def threaded_twitch():
+	print('Waiting for twitch shit...')
+
 	while True:
 		global sock
 
-		print('Waiting for twitch shit...')
 		resp = sock.recv(2048).decode('utf-8')
 
 		print(resp)
