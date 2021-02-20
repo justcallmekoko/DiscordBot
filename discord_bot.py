@@ -72,10 +72,9 @@ class CustomClient(discord.Client):
 	@loop(seconds = 0.1)
 	async def main(self):
 		print('Waiting for twitch shit...')
-		while True:
-			resp = sock.recv(2048).decode('utf-8')
+		resp = sock.recv(2048).decode('utf-8')
 
-			print(resp)
+		print(resp)
 
 	# Bot connects to discord server
 	async def on_ready(self):
