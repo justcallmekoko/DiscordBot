@@ -27,7 +27,7 @@ class TorchArrows():
 				#print (resp)
 				mcr.disconnect()
 				
-	async def stop(self):
+	async def stop(self, message):
 		print ('Running torch arrows off...')
 		with MCRcon("127.0.0.1", PASSW) as mcr:
 			#resp = mcr.command('/say torch arrows disabled')
@@ -56,7 +56,7 @@ class TorchArrows():
 			self.loop_func.start()
 			await message.channel.send(message.author.mention + ' !torcharrows enabled')
 		elif message.content.split(' ')[1].lower() == 'off' and self.looping:
-			await self.stop()
+			await self.stop(message)
 			
 		elif message.content.split(' ')[1].lower() == 'status':
 			if self.looping:
