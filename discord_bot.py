@@ -206,5 +206,5 @@ for loader, mod_name, ispkg in modules:
 		obj_list.append(instance)
 
 client = CustomClient()
-client.main.start()
 client.run(TOKEN)
+client.main.start()
