@@ -209,7 +209,7 @@ for loader, mod_name, ispkg in modules:
 		instance = loaded_class()
 		obj_list.append(instance)
 
-t = threading.Trhead(target=threaded_twitch)
+t = threading.Thread(target=threaded_twitch)
 t.start()
 
 client = CustomClient()
