@@ -48,7 +48,7 @@ class ExplodingArrows():
 				message.content = message.content + ' on'
 		except:
 			if (' on' not in message) and (' off' not in message) and (' status' not in message):
-				message.content = message.content + ' on'
+				message = message + ' on'
 			
 		if message.content.split(' ')[1].lower() == 'on' and not self.looping:
 			print ('Running Exploding arrows on...')
