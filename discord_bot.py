@@ -40,7 +40,7 @@ modules = pkgutil.iter_modules(path=[path])
 
 sock = socket.socket()
 
-sock.connect((server, port))
+sock.connect((twitch_server, port))
 
 sock.send(f"PASS {TWITT}\n".encode('utf-8'))
 sock.send(f"NICK {nickname}\n".encode('utf-8'))
