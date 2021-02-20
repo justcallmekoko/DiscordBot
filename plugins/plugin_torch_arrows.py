@@ -66,6 +66,7 @@ class TorchArrows():
 		except Exception as e:
 			if (' on' not in message) and (' off' not in message) and (' status' not in message):
 				message = message + ' on'
+				print('Running the shit')
 				await self.run(message)
 				return
 			
