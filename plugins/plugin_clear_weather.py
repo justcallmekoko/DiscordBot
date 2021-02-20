@@ -43,7 +43,7 @@ class ClearWeather():
 		try:
 			if (' on' not in message.content) and (' off' not in message.content) and (' status' not in message.content):
 				message.content = message.content + ' on'
-		Except:
+		except:
 			if (' on' not in message) and (' off' not in message) and (' status' not in message):
 				message.content = message.content + ' on'
 			
