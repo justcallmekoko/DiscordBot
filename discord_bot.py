@@ -1,6 +1,7 @@
 import os
 import re
 import sys
+import asyncio
 import discord
 import time
 import socket
@@ -72,12 +73,15 @@ def threaded_twitch():
 				#cheer_amount = int(float(sub.replace('Cheer', '').replace(':51\r\n', '')))
 				cheer_amount = re.sub("[^0-9]", "", sub)
 				contained_cheer = True
+				print('Cheer amount: ' + str(cheer_amount))
 				break
 				
 		if contained_cheer:
 			# Stop all plugins first
 			for obj in obj_list:
-				obj.stop(resp)
+				loop = asyncio.get_event_loop()
+				loop.create_task(obj.stop(resp))
+				#obj.stop(resp)
 				
 			# Find the plugin with the cheer amount
 			for obj in obj_list:
@@ -86,7 +90,10 @@ def threaded_twitch():
 					#if obj.admin and not admin:
 					#	await message.channel.send(message.author.mention + ' ' + str(cmd) + ' only admins may run this command')
 					#	break
-					obj.run(obj.name)
+					
+					loop = asyncio.get_event_loop()
+					loop.create_task(obj.run(obj.name))
+					#obj.run(obj.name)
 					break
 
 class CustomClient(discord.Client):
