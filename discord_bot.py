@@ -79,7 +79,7 @@ def threaded_twitch():
 				#if obj.admin and not admin:
 				#	await message.channel.send(message.author.mention + ' ' + str(cmd) + ' only admins may run this command')
 				#	break
-				await obj.run(obj.name)
+				obj.run(obj.name)
 				break
 
 class CustomClient(discord.Client):
