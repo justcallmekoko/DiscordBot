@@ -26,8 +26,26 @@ class ExplodingArrows():
 				resp = mcr.command('/kill @e[type=arrow,nbt={inGround:1b}]')
 				#print (resp)
 				mcr.disconnect()
+				
+	async def stop(self, message):
+		if self.looping:
+			print ('Running Exploding arrows off...')
 
+			with MCRcon("127.0.0.1", PASSW) as mcr:
+				#resp = mcr.command('/say Exploding arrows disabled')
+				resp = mcr.command('/tellraw @a [{\"text\":\"exploding arrows disabled\",\"color\":\"red\"}]')
+				#print (resp)
+				mcr.disconnect()
+
+			self.looping = False
+			self.loop_func.stop()
+			await message.channel.send(message.author.mention + ' !explodingarrows disabled')
+			
 	async def run(self, message):
+		#Cheer toggle
+		if (' on' not in message.content) and (' off' not in message.content) and (' status' not in message.content):
+			message.content = message.content + ' on'
+			
 		if message.content.split(' ')[1].lower() == 'on' and not self.looping:
 			print ('Running Exploding arrows on...')
 
@@ -41,17 +59,8 @@ class ExplodingArrows():
 			self.loop_func.start()
 			await message.channel.send(message.author.mention + ' !explodingarrows enabled')
 		elif message.content.split(' ')[1].lower() == 'off' and self.looping:
-			print ('Running Exploding arrows off...')
-
-			with MCRcon("127.0.0.1", PASSW) as mcr:
-				#resp = mcr.command('/say Exploding arrows disabled')
-				resp = mcr.command('/tellraw @a [{\"text\":\"exploding arrows disabled\",\"color\":\"red\"}]')
-				#print (resp)
-				mcr.disconnect()
-
-			self.looping = False
-			self.loop_func.stop()
-			await message.channel.send(message.author.mention + ' !explodingarrows disabled')
+			await self.stop()
+			
 		elif message.content.split(' ')[1].lower() == 'status':
 			if self.looping:
 				await message.channel.send(message.author.mention + ' !explodingarrows is on')

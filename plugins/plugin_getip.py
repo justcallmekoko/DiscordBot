@@ -16,3 +16,6 @@ class Getip():
 	async def run(self, message):
 		ip = get('https://api.ipify.org').text
 		await message.channel.send(message.author.mention + ' ' + str(ip))
+		
+	async def stop(self, message):
+		self.loop = False

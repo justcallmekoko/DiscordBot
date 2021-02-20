@@ -28,16 +28,17 @@ class TorchArrows():
 				mcr.disconnect()
 				
 	async def stop(self, message):
-		print ('Running torch arrows off...')
-		with MCRcon("127.0.0.1", PASSW) as mcr:
-			#resp = mcr.command('/say torch arrows disabled')
-			resp = mcr.command('/tellraw @a [{\"text\":\"torch arrows disabled\",\"color\":\"red\"}]')
-			#print (resp)
-			mcr.disconnect()
+		if self.looping:
+			print ('Running torch arrows off...')
+			with MCRcon("127.0.0.1", PASSW) as mcr:
+				#resp = mcr.command('/say torch arrows disabled')
+				resp = mcr.command('/tellraw @a [{\"text\":\"torch arrows disabled\",\"color\":\"red\"}]')
+				#print (resp)
+				mcr.disconnect()
 
-		self.looping = False
-		self.loop_func.stop()
-		await message.channel.send(message.author.mention + ' !torcharrows disabled')
+			self.looping = False
+			self.loop_func.stop()
+			await message.channel.send(message.author.mention + ' !torcharrows disabled')
 
 	async def run(self, message):
 		#Cheer toggle

@@ -13,3 +13,6 @@ class Test2():
 
 	async def run(self, message):
 		await message.channel.send(message.author.mention + ' Hello from Test2 plugin')
+		
+	async def stop(self, message):
+		self.loop = False
