@@ -1,4 +1,5 @@
 import os
+import re
 import sys
 import discord
 import time
@@ -68,7 +69,8 @@ def threaded_twitch():
 		#Parse cheers
 		for sub in str(resp).split(' '):
 			if 'Cheer' in sub:
-				cheer_amount = int(float(sub.replace('Cheer', '').replace(':51\r\n', '')))
+				#cheer_amount = int(float(sub.replace('Cheer', '').replace(':51\r\n', '')))
+				cheer_amount = re.sub("[^0-9]", "", sub)
 				contained_cheer = True
 				break
 				
