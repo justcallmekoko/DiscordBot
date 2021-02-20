@@ -3,6 +3,7 @@ import sys
 import discord
 import time
 import socket
+import threading
 from dotenv import load_dotenv
 from mcrcon import MCRcon
 from discord.ext.tasks import loop
@@ -50,6 +51,15 @@ sock.send(f"PASS {TWITT}\n".encode('utf-8'))
 sock.send(f"NICK {nickname}\n".encode('utf-8'))
 sock.send(f"JOIN {channel}\n".encode('utf-8'))
 
+def threaded_twitch():
+	while True:
+		global sock
+
+		print('Waiting for twitch shit...')
+		resp = sock.recv(2048).decode('utf-8')
+
+		print(resp)
+
 class CustomClient(discord.Client):
 	global obj_list
 	global TWITT
@@ -68,13 +78,7 @@ class CustomClient(discord.Client):
 #		with MCRcon("127.0.0.1", PASSW) as mcr:
 #			resp = mcr.command('/weather clear')
 #			print (resp)
-
-	@loop(seconds = 0.1)
-	async def main(self):
-		print('Waiting for twitch shit...')
-		resp = sock.recv(2048).decode('utf-8')
-
-		print(resp)
+		
 
 	# Bot connects to discord server
 	async def on_ready(self):
@@ -204,6 +208,9 @@ for loader, mod_name, ispkg in modules:
 
 		instance = loaded_class()
 		obj_list.append(instance)
+
+t = threading.Trhead(target=threaded_twitch)
+t.start()
 
 client = CustomClient()
 client.run(TOKEN)
