@@ -2,6 +2,7 @@ import os
 import sys
 import discord
 import time
+import socket
 from dotenv import load_dotenv
 from mcrcon import MCRcon
 from discord.ext.tasks import loop
@@ -21,15 +22,29 @@ GR = '\033[37m' # gray
 T  = '\033[93m' # tan
 
 load_dotenv()
+TWITT = os.getenv('TWITCH_TOKEN')
 TOKEN = os.getenv('DISCORD_TOKEN')
 GUILD = os.getenv('DISCORD_GUILD')
 PASSW = os.getenv('RCON_PASSWORD')
+
+twitch_server = 'irc.chat.twitch.tv'
+port = 6667
+nickname = 'willstunforfood'
+channel = '#willstunforfood'
 
 global obj_list
 obj_list = []
 
 path = os.path.join(os.path.dirname(__file__), "plugins")
 modules = pkgutil.iter_modules(path=[path])
+
+sock = socket.socket()
+
+sock.connect((server, port))
+
+sock.send(f"PASS {TWITT}\n".encode('utf-8'))
+sock.send(f"NICK {nickname}\n".encode('utf-8'))
+sock.send(f"JOIN {channel}\n".encode('utf-8'))
 
 class CustomClient(discord.Client):
 	global obj_list
@@ -178,3 +193,8 @@ for loader, mod_name, ispkg in modules:
 client = CustomClient()
 #client.main.start()
 client.run(TOKEN)
+
+print('Waiting for Twitch shit')
+
+while True:
+    continue
