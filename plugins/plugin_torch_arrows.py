@@ -63,7 +63,7 @@ class TorchArrows():
 		try:
 			if (' on' not in message.content) and (' off' not in message.content) and (' status' not in message.content):
 				message.content = message.content + ' on'
-		except:
+		except Exception, e:
 			if (' on' not in message) and (' off' not in message) and (' status' not in message):
 				message = message + ' on'
 				await self.run(message)
