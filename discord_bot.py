@@ -52,8 +52,8 @@ sock.send(f"JOIN {channel}\n".encode('utf-8'))
 
 class CustomClient(discord.Client):
 	global obj_list
-    global TWITT
-    global sock
+	global TWITT
+	global sock
 
 	# Loop that will just run in the background
 #	@loop(seconds = 0.1)
@@ -90,15 +90,13 @@ class CustomClient(discord.Client):
 			print('\t' + role.name)
 
 		print ()
-        
-        print('Waiting for twitch shit...')
-        while True:
-            resp = sock.recv(2048)decode('utf-8')
-            
-            print(resp)
-        
-        
-        
+
+		print('Waiting for twitch shit...')
+		while True:
+			resp = sock.recv(2048)decode('utf-8')
+
+			print(resp)
+
 
 	# Member joins the discord server
 	async def on_member_join(self, member):
