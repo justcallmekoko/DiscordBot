@@ -71,7 +71,7 @@ class TorchArrows():
 				did_run = True
 				await self.run(message)
 				return
-		if not did_run:
+		try:
 			if message.content.split(' ')[1].lower() == 'on' and not self.looping:
 				await self.toggle(message)
 					
@@ -86,3 +86,5 @@ class TorchArrows():
 
 			else:
 				await message.channel.send(message.author.mention + ' ' + str(message.content) + ' is not a recognized command')
+		except Exception as e:
+			this_is_fucking_bullshit = True
