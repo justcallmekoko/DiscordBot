@@ -42,6 +42,21 @@ class TorchArrows():
 				await message.channel.send(message.author.mention + ' !torcharrows disabled')
 			except:
 				boop = True
+				
+	async def toggle(self, message):
+		print ('Running torch arrows on...')
+		with MCRcon("127.0.0.1", PASSW) as mcr:
+			#resp = mcr.command('/say torch arrows enabled')
+			resp = mcr.command('/tellraw @a [{\"text\":\"torch arrows enabled\",\"color\":\"green\"}]')
+			#print (resp)
+			mcr.disconnect()
+
+		self.looping = True
+		self.loop_func.start()
+		try:
+			await message.channel.send(message.author.mention + ' !torcharrows enabled')
+		except:
+			boop = True
 
 	async def run(self, message):
 		#Cheer toggle
@@ -51,21 +66,11 @@ class TorchArrows():
 		except:
 			if (' on' not in message) and (' off' not in message) and (' status' not in message):
 				message = message + ' on'
+				await self.run(message)
+				return
 			
 		if message.content.split(' ')[1].lower() == 'on' and not self.looping:
-			print ('Running torch arrows on...')
-			with MCRcon("127.0.0.1", PASSW) as mcr:
-				#resp = mcr.command('/say torch arrows enabled')
-				resp = mcr.command('/tellraw @a [{\"text\":\"torch arrows enabled\",\"color\":\"green\"}]')
-				#print (resp)
-				mcr.disconnect()
-
-			self.looping = True
-			self.loop_func.start()
-			try:
-				await message.channel.send(message.author.mention + ' !torcharrows enabled')
-			except:
-				boop = True
+			await self.toggle(message)
 				
 		elif message.content.split(' ')[1].lower() == 'off' and self.looping:
 			await self.stop(message)
