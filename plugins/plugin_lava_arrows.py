@@ -45,22 +45,22 @@ class LavaArrows():
 	# Function to activate loop
 	async def toggle(self, message):
 		print ('Running lava arrows on...')
-			with MCRcon("127.0.0.1", PASSW) as mcr:
-				#resp = mcr.command('/say lava arrows enabled')
-				try:
-					resp = mcr.command('/tellraw @a [{\"text\":\"' + message + ': lava arrows enabled\",\"color\":\"green\"}]')
-				except Exception as e:
-					resp = mcr.command('/tellraw @a [{\"text\":\"lava arrows enabled\",\"color\":\"green\"}]')
-				#print (resp)
-				mcr.disconnect()
-
-			self.looping = True
-			self.loop_func.start()
-			
+		with MCRcon("127.0.0.1", PASSW) as mcr:
+			#resp = mcr.command('/say lava arrows enabled')
 			try:
-				await message.channel.send(message.author.mention + ' !lavaarrows enabled')
-			except:
-				boop = True
+				resp = mcr.command('/tellraw @a [{\"text\":\"' + message + ': lava arrows enabled\",\"color\":\"green\"}]')
+			except Exception as e:
+				resp = mcr.command('/tellraw @a [{\"text\":\"lava arrows enabled\",\"color\":\"green\"}]')
+			#print (resp)
+			mcr.disconnect()
+
+		self.looping = True
+		self.loop_func.start()
+		
+		try:
+			await message.channel.send(message.author.mention + ' !lavaarrows enabled')
+		except:
+			boop = True
 
 	async def run(self, message):
 		#Check if this was executed with cheer
