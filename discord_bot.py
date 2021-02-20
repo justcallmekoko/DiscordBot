@@ -52,19 +52,18 @@ sock.send(f"NICK {nickname}\n".encode('utf-8'))
 sock.send(f"JOIN {channel}\n".encode('utf-8'))
 
 def threaded_twitch():
+	global sock
+	global obj_list
+	
 	print('Waiting for twitch shit...')
 
 	while True:
-		global sock
-
 		resp = sock.recv(2048).decode('utf-8')
 
 		print(resp)
 
 class CustomClient(discord.Client):
 	global obj_list
-	global TWITT
-	global sock
 
 	# Loop that will just run in the background
 #	@loop(seconds = 0.1)

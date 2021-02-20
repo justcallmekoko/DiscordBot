@@ -8,6 +8,8 @@ class Test2():
 	loop = False
 
 	admin = False
+	
+	cheer = 3
 
 	async def run(self, message):
 		await message.channel.send(message.author.mention + ' Hello from Test2 plugin')

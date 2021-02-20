@@ -10,6 +10,8 @@ class Getip():
 	loop = False
 
 	admin = False
+	
+	cheer = -1
 
 	async def run(self, message):
 		ip = get('https://api.ipify.org').text
