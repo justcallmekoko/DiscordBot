@@ -93,7 +93,7 @@ class CustomClient(discord.Client):
 
 		print('Waiting for twitch shit...')
 		while True:
-			resp = sock.recv(2048)decode('utf-8')
+			resp = sock.recv(2048).decode('utf-8')
 
 			print(resp)
 
