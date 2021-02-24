@@ -1,5 +1,5 @@
 import os
-from random import random
+from random import randint
 from dotenv import load_dotenv
 from mcrcon import MCRcon
 from discord.ext.tasks import loop
@@ -52,7 +52,7 @@ class Spawn():
 		with MCRcon("127.0.0.1", PASSW) as mcr:
 			# Minecraft command to spawn X near player
 			#resp = mcr.command('/execute at @e[type=arrow,nbt={inGround:1b,pickup:2b}] run summon tnt')
-			resp = mcr.command('/summon ' + str(ent) + ' ~' + str(random(1, 5)) + ' ~' + str(random(1, 5)) + ' ~' + str(random(1, 5)))
+			resp = mcr.command('/summon ' + str(ent) + ' ~' + str(randint(1, 5)) + ' ~' + str(randint(1, 5)) + ' ~' + str(randint(1, 5)))
 
 			# Minecraft command to post notification text in the game
 			resp = mcr.command('/tellraw @a [{\"text\":\"' + user + ': Spawned a(n) ' + str(ent) + '\",\"color\":\"green\"}]')
