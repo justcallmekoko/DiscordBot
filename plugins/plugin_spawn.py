@@ -1,4 +1,5 @@
 import os
+from random import random
 from dotenv import load_dotenv
 from mcrcon import MCRcon
 from discord.ext.tasks import loop
@@ -39,12 +40,22 @@ class Spawn():
 		
 	async def runCheer(self, user, amount):
 		print ('Spawning...')
+		
+		found = False
+		ent = ''
+		
+		for item in self.cheer:
+			if int(amount) == int(item[0]):
+				found = True
+				ent = str(item[1])
+				
 		with MCRcon("127.0.0.1", PASSW) as mcr:
 			# Minecraft command to spawn X near player
 			#resp = mcr.command('/execute at @e[type=arrow,nbt={inGround:1b,pickup:2b}] run summon tnt')
+			resp = mcr.command('/summon ' + str(ent) + ' ~' + str(random(1, 5)) + ' ~' + str(random(1, 5)) + ' ~' + str(random(1, 5)))
 
 			# Minecraft command to post notification text in the game
-			resp = mcr.command('/tellraw @a [{\"text\":\"' + user + ': Spawned a(n) \",\"color\":\"green\"}]')
+			resp = mcr.command('/tellraw @a [{\"text\":\"' + user + ': Spawned a(n) ' + str(ent) + '\",\"color\":\"green\"}]')
 			mcr.disconnect()
 			
 
