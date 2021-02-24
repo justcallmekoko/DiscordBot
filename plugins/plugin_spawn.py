@@ -25,7 +25,7 @@ class Spawn():
 	def checkBits(self, bits):
 		found = False
 		for item in self.cheer:
-			if int(bits) == int(self.cheer[0]):
+			if int(bits) == int(item[0]):
 				found = True
 				break
 
