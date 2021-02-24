@@ -5,7 +5,7 @@ from discord.ext.tasks import loop
 
 PASSW = os.getenv('RCON_PASSWORD')
 
-class ClearWeather():
+class Spawn():
 	name = '!spawn'
 
 	desc = 'Spawn a(n) '
