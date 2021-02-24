@@ -47,6 +47,15 @@ class ExplodingArrows():
 			self.loop_func.stop()
 			await message.channel.send(message.author.mention + ' !explodingarrows disabled')
 			
+	async def runCheer(self, user, amount):
+		print ('Running lava arrows on...')
+		with MCRcon("127.0.0.1", PASSW) as mcr:
+			resp = mcr.command('/tellraw @a [{\"text\":\"' + user + ': exploding arrows enabled\",\"color\":\"green\"}]')
+			mcr.disconnect()
+
+		self.looping = True
+		self.loop_func.start()
+			
 	async def run(self, message):
 		#Cheer toggle
 		try:
