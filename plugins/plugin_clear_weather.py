@@ -26,6 +26,12 @@ class ClearWeather():
                                 #print (resp)
                                 mcr.disconnect()
 								
+	def checkBits(self, bits):
+		if bits == self.cheer:
+			return True
+		else:
+			return False
+								
 	async def stop(self, message):
 		if self.looping:
 			print ('Running clear weather off...')

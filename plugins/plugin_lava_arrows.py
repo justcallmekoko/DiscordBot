@@ -27,6 +27,12 @@ class LavaArrows():
 				#print (resp)
 				mcr.disconnect()
 				
+	def checkBits(self, bits):
+		if bits == self.cheer:
+			return True
+		else:
+			return False
+				
 	async def stop(self, message):
 		if self.looping:
 			print ('Running lava arrows off...')
@@ -41,6 +47,16 @@ class LavaArrows():
 				await message.channel.send(message.author.mention + ' !lavaarrows disabled')
 			except:
 				boop = True
+				
+	async def runCheer(self, user, amount):
+		print ('Running lava arrows on...')
+		with MCRcon("127.0.0.1", PASSW) as mcr:
+			resp = mcr.command('/tellraw @a [{\"text\":\"' + user + ': lava arrows enabled\",\"color\":\"green\"}]')
+			mcr.disconnect()
+
+		self.looping = True
+		self.loop_func.start()
+		
 				
 	# Function to activate loop
 	async def toggle(self, message):

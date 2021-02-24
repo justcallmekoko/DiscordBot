@@ -26,6 +26,12 @@ class ExplodingArrows():
 				resp = mcr.command('/kill @e[type=arrow,nbt={inGround:1b}]')
 				#print (resp)
 				mcr.disconnect()
+			
+	def checkBits(self, bits):
+		if bits == self.cheer:
+			return True
+		else:
+			return False
 				
 	async def stop(self, message):
 		if self.looping:

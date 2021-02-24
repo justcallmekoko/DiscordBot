@@ -9,9 +9,15 @@ class Getip():
 
 	loop = False
 
-	admin = False
+	admin = True
 	
 	cheer = -1
+	
+	def checkBits(self, bits):
+		return False
+	
+	async def runCheer(self, user, amount):
+		return
 
 	async def run(self, message):
 		ip = get('https://api.ipify.org').text

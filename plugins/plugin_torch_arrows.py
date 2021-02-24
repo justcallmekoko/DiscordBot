@@ -27,6 +27,12 @@ class TorchArrows():
 				#print (resp)
 				mcr.disconnect()
 				
+	def checkBits(self, bits):
+		if bits == self.cheer:
+			return True
+		else:
+			return False
+				
 	async def stop(self, message):
 		if self.looping:
 			print ('Running torch arrows off...')
@@ -42,6 +48,19 @@ class TorchArrows():
 				await message.channel.send(message.author.mention + ' !torcharrows disabled')
 			except:
 				boop = True
+				
+	async def runCheer(self, user, amount):
+		print ('Running torch arrows on...')
+		with MCRcon("127.0.0.1", PASSW) as mcr:
+		
+			# Send notification in minecraft
+			resp = mcr.command('/tellraw @a [{\"text\":\"' + user + ': torch arrows enabled\",\"color\":\"green\"}]')
+
+			mcr.disconnect()
+
+		self.looping = True
+		self.loop_func.start()
+		
 				
 	# Function to activate loop
 	async def toggle(self, message):
