@@ -16,7 +16,7 @@ class LavaArrows():
 
 	admin = True
 	
-	cheer = 201
+	cheer = 71
 
 	@loop(seconds = 0.1)
 	async def loop_func(self):
