@@ -16,7 +16,7 @@ class ExplodingArrows():
 
 	admin = True
 	
-	cheer = 101
+	cheer = 61
 
 	@loop(seconds = 0.1)
 	async def loop_func(self):
