@@ -13,7 +13,7 @@
 - [Controlling The Bot](#controlling-the-bot)
   - [Discord Commands](#discord-commands)
     - [Admin Commands](#admin-commands)
-  - [Twitch Cheers](#minecraft-cheers)
+  - [Twitch Cheers](#twitch-cheers)
 - [To Do](#to-do)
 
 # About
@@ -38,27 +38,52 @@ Commands only Discord server admins can run
 | ------- | -------- | ----------- |
 |         | VCC      | VCC         |
 
-## Minecraft Cheers
+## Twitch Cheers
 The bot can be controlled directly from Twitch Chat using Cheers. When Cheers of specific amounts are posted, the corresponding bot plugin is activated in the minecraft world.
 
 *Bit amounts are subject to change after balancing*
+### Mobs
+| Cheer | Effect |
+| ----- | ------ |
+| Cheer3 | Spawn Chicken |
+| Cheer4 | Spawn Sheep |
+| Cheer5 | Spawn Bee |
+| Cheer6 | Spawn Cow |
+| Cheer8 | Spawn Evokation Villager |
+| Cheer9 | Spawn Skeleton Horse |
+| Cheer10 | Spawn Horse |
+| Cheer11 | Spawn Zombie Villager |
+| Cheer12 | Spawn Vex |
+| Cheer13 | Spawn Spider |
+| Cheer15 | Spawn Creeper |
+| Cheer16 | Spawn Skeleton |
+| Cheer17 | Spawn Enderman |
+| Cheer18 | Spawn Silverfish |
+| Cheer25 | Spawn Blaze |
+| Cheer50 | Spawn Giant |
+| Cheer55 | Spawn Ender Crystal |
+| Cheer75 | Spawn Ghast |
+| Cheer76 | Spawn Polar Bear |
+| Cheer100 | Spawn Snowman |
+| Cheer200 | Spawn Witch |
+| Cheer1000 | Spawn Wither |
+| Cheer2000 | Spawn Ender Dragon |
+
+### World Effects
 | Cheer | Effect |
 | ----- | ------ |
 | Cheer1  | Place one obsidian in a random coordinate near me |
-| Cheer2  | Set weather to always thunderstorm |
-| Cheer11 | Set weather to always clear |
-| Cheer31 | Set time to night |
-| Cheer41 | Set my level to one |
-| Cheer51 | Arrows turn into torches when they hit the ground|
+| Cheer2  | Set weather to always clear |
+| Cheer19 | Set weather to always thunderstorm |
+| Cheer21 | Set time to night |
+| Cheer22 | Set my level to one |
+| Cheer23 | Arrows turn into torches when they hit the ground|
 | Cheer61 | Arrows explode when they hit the ground |
 | Cheer71 | Arrows turn into lava/magma when they hit the ground |
 | Cheer81 | Teleport me back home |
 | Cheer91 | Give me fire resistance |
-| Cheer101 | Teleport all zombies in the area to me |
-| Cheer201 | Teleport all skeletons in the area to me |
-| Cheer501 | Teleport all creepers in the area to me |
-| Cheer1001 | Poison me |
-| Cheer100000 | I just fucking die |
+| Cheer102 | Poison me |
+| Cheer503 | I just fucking die |
 
 # To Do
-- Think of more minecraft world effects
+- Think of more minecraft effects
