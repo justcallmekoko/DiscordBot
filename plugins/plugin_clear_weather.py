@@ -16,7 +16,7 @@ class ClearWeather():
 
 	admin = True
 	
-	cheer = 11
+	cheer = 14
 
 	@loop(seconds = 1)
 	async def loop_func(self):
