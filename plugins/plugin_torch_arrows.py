@@ -16,7 +16,7 @@ class TorchArrows():
 
 	admin = True
 	
-	cheer = 51
+	cheer = 23
 
 	@loop(seconds = 0.1)
 	async def loop_func(self):
