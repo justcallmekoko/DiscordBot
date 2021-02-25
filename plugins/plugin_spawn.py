@@ -18,9 +18,30 @@ class Spawn():
 	admin = True
 	
 	cheer = [
-			[15, 'horse'],
-			[25, 'bee']
-			]
+		[3,'chicken'],
+		[4,'sheep'],
+		[5, 'bee'],
+		[6,'cow'],
+		[8,'evokation_illager'],
+		[9,'skeleton_horse'],
+		[10, 'horse'],
+		[11,'zombie_villager'],
+		[12,'vex'],
+		[13,'spider'],
+		[15,'creeper'],
+		[16,'skeleton'],
+		[17,'enderman'],
+		[18,'silverfish'],
+		[25,'blaze'],
+		[50,'giant'],
+		[75,'ghast'],
+		[76,'polar_bear'],
+		[100,'snowman'],
+		[200,'witch'],
+		[500,'ender_crystal']
+		[1000,'wither'],
+		[2000,'ender_dragon'],
+		]
 
 	
 	def checkBits(self, bits):
