@@ -40,7 +40,7 @@ class Spawn():
 		[100,'snowman'],
 		[200,'witch'],
 		[1000,'wither'],
-		[2000,'ender_dragon'],
+		[2000,'ender_dragon']
 		]
 
 	
