@@ -86,4 +86,5 @@ The bot can be controlled directly from Twitch Chat using Cheers. When Cheers of
 | Cheer503 | I just fucking die |
 
 # To Do
+- Finish adding plugins for current effects
 - Think of more minecraft effects
