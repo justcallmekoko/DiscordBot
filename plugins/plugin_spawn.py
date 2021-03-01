@@ -5,6 +5,7 @@ from mcrcon import MCRcon
 from discord.ext.tasks import loop
 
 PASSW = os.getenv('RCON_PASSWORD')
+HOST_USER = os.getenv('HOST_USER')
 
 class Spawn():
 	name = '!spawn'
@@ -73,7 +74,7 @@ class Spawn():
 		with MCRcon("127.0.0.1", PASSW) as mcr:
 			# Minecraft command to spawn X near player
 			#resp = mcr.command('/execute at @e[type=arrow,nbt={inGround:1b,pickup:2b}] run summon tnt')
-			resp = mcr.command('/execute at @p run summon ' + str(ent) + ' ~' + str(randint(1, 5)) + ' ~' + str(randint(1, 5)) + ' ~' + str(randint(1, 5)))
+			resp = mcr.command('/execute at ' + str(HOST_USER) + ' run summon ' + str(ent) + ' ~' + str(randint(1, 5)) + ' ~' + str(randint(1, 5)) + ' ~' + str(randint(1, 5)))
 
 			# Minecraft command to post notification text in the game
 			resp = mcr.command('/tellraw @a [{\"text\":\"' + user + ': Spawned a(n) ' + str(ent) + '\",\"color\":\"green\"}]')
