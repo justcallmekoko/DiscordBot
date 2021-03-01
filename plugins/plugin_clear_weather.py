@@ -51,7 +51,10 @@ class ClearWeather():
 				mcr.disconnect()
 			self.looping = False
 			self.loop_func.stop()
-			await message.channel.send(message.author.mention + ' !clearweather disabled')
+			try:
+				await message.channel.send(message.author.mention + ' !clearweather disabled')
+			except:
+				this_fucking_thing_didnt_work = True
 
 	async def run(self, message):
 		#Cheer toggle
