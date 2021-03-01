@@ -38,7 +38,7 @@ class Spawn():
 		[55,'ender_crystal'],
 		[75,'ghast'],
 		[76,'polar_bear'],
-		[100,'snowman'],
+		[100,'snow_golem'],
 		[200,'witch'],
 		[1000,'wither'],
 		[2000,'ender_dragon']
