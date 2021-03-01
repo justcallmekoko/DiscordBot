@@ -34,7 +34,7 @@ class Spawn():
 		[18,'silverfish'],
 		[25,'blaze'],
 		[50,'giant'],
-		[55,'ender_crystal']
+		[55,'ender_crystal'],
 		[75,'ghast'],
 		[76,'polar_bear'],
 		[100,'snowman'],
