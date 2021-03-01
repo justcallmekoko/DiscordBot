@@ -18,7 +18,7 @@ class Setblock():
 
 	admin = True
 	
-	cheer = [1]
+	cheer = 1
 
 	
 	def checkBits(self, bits):
