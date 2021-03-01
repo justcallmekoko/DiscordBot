@@ -31,6 +31,15 @@ class ClearWeather():
 			return True
 		else:
 			return False
+			
+	async def runCheer(self, user, amount):
+		print ('Running clear weather enabled on...')
+		with MCRcon("127.0.0.1", PASSW) as mcr:
+			resp = mcr.command('/tellraw @a [{\"text\":\"' + user + ': clear weather enabled\",\"color\":\"green\"}]')
+			mcr.disconnect()
+
+		self.looping = True
+		self.loop_func.start()
 								
 	async def stop(self, message):
 		if self.looping:
