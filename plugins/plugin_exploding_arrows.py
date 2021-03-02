@@ -45,7 +45,10 @@ class ExplodingArrows():
 
 			self.looping = False
 			self.loop_func.stop()
-			await message.channel.send(message.author.mention + ' !explodingarrows disabled')
+			try:
+				await message.channel.send(message.author.mention + ' !explodingarrows disabled')
+			except:
+				boop = False
 			
 	async def runCheer(self, user, amount):
 		print ('Running lava arrows on...')
