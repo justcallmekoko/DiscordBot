@@ -7,22 +7,31 @@ from discord.ext.tasks import loop
 PASSW = os.getenv('RCON_PASSWORD')
 HOST_USER = os.getenv('HOST_USER')
 
-class FireResistance():
-	name = '!fireresistance'
+class Effect():
+	name = '!effect'
 
-	desc = 'Give fire resistance '
+	desc = 'Give an effect '
 
-	synt = '!fireresistance'
+	synt = '!effect'
 
 	looping = False
 
 	admin = True
 	
-	cheer = 91
+	cheer = [
+		[91,'fire_resistance'],
+		[102,'poison']
+		]
 
 	
 	def checkBits(self, bits):
-		if bits == self.cheer:
+		found = False
+		for item in self.cheer:
+			if int(bits) == int(item[0]):
+				found = True
+				break
+
+		if found:
 			return True
 		else:
 			return False
@@ -31,17 +40,23 @@ class FireResistance():
 		self.looping = False
 		
 	async def runCheer(self, user, amount):
-		print ('Giving fire resistance...')
+		print ('Giving effect...')
 		
+		found = False
+		ent = ''
 		
+		for item in self.cheer:
+			if int(amount) == int(item[0]):
+				found = True
+				ent = str(item[1])
 				
 		with MCRcon("127.0.0.1", PASSW) as mcr:
 			# Minecraft command to spawn X near player
 			#resp = mcr.command('/execute at @e[type=arrow,nbt={inGround:1b,pickup:2b}] run summon tnt')
-			resp = mcr.command('/effect give ' + str(HOST_USER) + ' fire_resistance')
+			resp = mcr.command('/effect give ' + str(HOST_USER) + ' ' + str(ent))
 
 			# Minecraft command to post notification text in the game
-			resp = mcr.command('/tellraw @a [{\"text\":\"' + user + ': gave fire resistance\",\"color\":\"green\"}]')
+			resp = mcr.command('/tellraw @a [{\"text\":\"' + user + ': Gave ' + str(ent) + '\",\"color\":\"green\"}]')
 			mcr.disconnect()
 			
 
