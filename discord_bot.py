@@ -67,6 +67,8 @@ def threaded_twitch():
 		
 		contained_cheer = False
 		
+		cheer_amount = 0
+		
 		#Parse cheers
 		for sub in str(resp).split(' '):
 			if 'Cheer' in sub:
