@@ -76,25 +76,26 @@ def threaded_twitch():
 				print('Cheer amount: ' + str(cheer_amount))
 				break
 				
-		if (contained_cheer) and (int(cheer_amount) > 0):
-			# Stop all plugins first
-			for obj in obj_list:
-				print('Stopping: ' + str(obj.name))
-				run_stop = asyncio.run(obj.stop(resp))
-				#await obj.stop(resp)
-				
-			# Find the plugin with the cheer amount
-			for obj in obj_list:
-				if obj.checkBits(int(cheer_amount)):
-					found = True
-					print('Found plugin: ' + obj.name)
-					#if obj.admin and not admin:
-					#	await message.channel.send(message.author.mention + ' ' + str(cmd) + ' only admins may run this command')
-					#	break
+		if str(cheer_amount).isnumeric():
+			if (contained_cheer) and (int(cheer_amount) > 0):
+				# Stop all plugins first
+				for obj in obj_list:
+					print('Stopping: ' + str(obj.name))
+					run_stop = asyncio.run(obj.stop(resp))
+					#await obj.stop(resp)
 					
-					run_run = asyncio.run(obj.runCheer(obj.name + ' ' + str(resp).split('!')[0], int(cheer_amount)))
-					#await obj.run(obj.name)
-					break
+				# Find the plugin with the cheer amount
+				for obj in obj_list:
+					if obj.checkBits(int(cheer_amount)):
+						found = True
+						print('Found plugin: ' + obj.name)
+						#if obj.admin and not admin:
+						#	await message.channel.send(message.author.mention + ' ' + str(cmd) + ' only admins may run this command')
+						#	break
+						
+						run_run = asyncio.run(obj.runCheer(obj.name + ' ' + str(resp).split('!')[0], int(cheer_amount)))
+						#await obj.run(obj.name)
+						break
 
 class CustomClient(discord.Client):
 	global obj_list
