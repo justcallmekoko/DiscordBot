@@ -72,7 +72,7 @@ def threaded_twitch():
 		#Parse cheers
 		
 		if 'Cheer' in str(resp):
-			cheer_amount = resp.split(' ')[0].replace(':51\r\n', '').replace('Cheer', '').replace('\n', '')
+			cheer_amount = resp.split(' ')[-1].replace(':51\r\n', '').replace('Cheer', '').replace('\n', '').replace(':', '')
 			contained_cheer = True
 			print('Cheer amount: ' + str(cheer_amount))
 		
