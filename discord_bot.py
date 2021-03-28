@@ -87,7 +87,7 @@ def threaded_twitch():
 		#		break
 				
 		if not re.search('[a-zA-Z]', str(cheer_amount)):
-			cheer_amount = re.str(cheer_amount)("[^0-9]", "", str(cheer_amount))
+			cheer_amount = re.cheer_amount("[^0-9]", "", str(cheer_amount))
 			if (contained_cheer) and (int(cheer_amount) > 0):
 				# Stop all plugins first
 				for obj in obj_list:
