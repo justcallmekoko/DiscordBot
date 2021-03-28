@@ -84,7 +84,7 @@ def threaded_twitch():
 		#		print('Cheer amount: ' + str(cheer_amount))
 		#		break
 				
-		if str(cheer_amount).isnumeric():
+		if cheer_amount.isnumeric():
 			if (contained_cheer) and (int(cheer_amount) > 0):
 				# Stop all plugins first
 				for obj in obj_list:
