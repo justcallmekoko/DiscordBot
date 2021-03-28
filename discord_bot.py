@@ -96,6 +96,8 @@ def threaded_twitch():
 						run_run = asyncio.run(obj.runCheer(obj.name + ' ' + str(resp).split('!')[0], int(cheer_amount)))
 						#await obj.run(obj.name)
 						break
+		else:
+			print('Cheer not valid: ' + str(cheer_amount))
 
 class CustomClient(discord.Client):
 	global obj_list
