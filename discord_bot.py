@@ -6,6 +6,7 @@ import discord
 import time
 import socket
 import threading
+from string import printable
 from dotenv import load_dotenv
 from mcrcon import MCRcon
 from discord.ext.tasks import loop
@@ -72,7 +73,8 @@ def threaded_twitch():
 		#Parse cheers
 		
 		if 'Cheer' in str(resp):
-			cheer_amount = resp.split(' ')[-1].replace(':51\r\n', '').replace('Cheer', '').replace('\n', '').replace(':', '')
+			raw_cheer_amount = resp.split(' ')[-1].replace(':51\r\n', '').replace('Cheer', '').replace('\n', '').replace(':', '')
+			cheer_amount = ''.join(char for char in raw_cheer_amount if char in printable)
 			contained_cheer = True
 			print('Cheer amount: ' + str(cheer_amount))
 		
@@ -84,7 +86,7 @@ def threaded_twitch():
 		#		print('Cheer amount: ' + str(cheer_amount))
 		#		break
 				
-		if cheer_amount.isnumeric():
+		if str(cheer_amount).isnumeric():
 			if (contained_cheer) and (int(cheer_amount) > 0):
 				# Stop all plugins first
 				for obj in obj_list:
