@@ -70,13 +70,19 @@ def threaded_twitch():
 		cheer_amount = 0
 		
 		#Parse cheers
-		for sub in str(resp).split(' '):
-			if 'Cheer' in sub:
-				#cheer_amount = int(float(sub.replace('Cheer', '').replace(':51\r\n', '')))
-				cheer_amount = re.sub("[^0-9]", "", sub)
-				contained_cheer = True
-				print('Cheer amount: ' + str(cheer_amount))
-				break
+		
+		if 'Cheer' in str(cheer_raw):
+			cheer_amount = cheer_raw.split(' ')[0].replace('Cheer', '').replace('\n', '')
+			contained_cheer = True
+			print('Cheer amount: ' + str(cheer_amount))
+		
+		#for sub in str(resp).split(' '):
+		#	if 'Cheer' in sub:
+		#		#cheer_amount = int(float(sub.replace('Cheer', '').replace(':51\r\n', '')))
+		#		cheer_amount = re.sub("[^0-9]", "", sub)
+		#		contained_cheer = True
+		#		print('Cheer amount: ' + str(cheer_amount))
+		#		break
 				
 		if str(cheer_amount).isnumeric():
 			if (contained_cheer) and (int(cheer_amount) > 0):
