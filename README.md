@@ -80,7 +80,6 @@ The bot can be controlled directly from Twitch Chat using Cheers. When Cheers of
 | Cheer23 | Arrows turn into torches when they hit the ground|
 | Cheer61 | Arrows explode when they hit the ground |
 | Cheer71 | Arrows turn into lava/magma when they hit the ground |
-| Cheer81 | Teleport me back home |
 | Cheer91 | Give me fire resistance |
 | Cheer102 | Poison me |
 | Cheer503 | I just fucking die |
