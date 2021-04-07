@@ -59,6 +59,8 @@ def threaded_twitch():
 	global sock
 	global obj_list
 	
+	bad_chars = 'abcdefghijklmnopqrstuvwxyzABZDEFGHIJKLMNOPQRSTUVWXYZ!@#$%^&*()`~-_=+[{]}\|;:\'",<.>/?'
+	
 	print('Waiting for twitch shit...')
 
 	while True:
@@ -86,8 +88,14 @@ def threaded_twitch():
 		#		contained_cheer = True
 		#		print('Cheer amount: ' + str(cheer_amount))
 		#		break
+		
+		bad_char_found = False
+		
+		for i in list(bad_chars):
+			if str(i) in str(cheer_amount):
+				bad_char_found = True
 				
-		if not re.search('[a-zA-Z]', str(cheer_amount)):
+		if ((not re.search('[a-zA-Z]', str(cheer_amount))) and (not bad_char_found)):
 			cheer_amount = re.sub("[^0-9]", "", str(cheer_amount))
 			if (contained_cheer) and (int(cheer_amount) > 0):
 				# Stop all plugins first
