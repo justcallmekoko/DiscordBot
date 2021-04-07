@@ -17,6 +17,14 @@ class TorchArrows():
 	admin = True
 	
 	cheer = 23
+	
+	cat = 'arrows'
+	
+	def checkCat(self, check_cat):
+		if self.cat == check_cat:
+			return True
+		else:
+			return False
 
 	@loop(seconds = 0.1)
 	async def loop_func(self):

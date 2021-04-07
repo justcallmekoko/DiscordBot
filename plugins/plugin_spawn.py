@@ -18,6 +18,8 @@ class Spawn():
 
 	admin = True
 	
+	cat = 'spawn'
+	
 	cheer = [
 		[3,'chicken'],
 		[4,'sheep'],
@@ -43,6 +45,12 @@ class Spawn():
 		[1000,'wither'],
 		[2000,'ender_dragon']
 		]
+		
+	def checkCat(self, check_cat):
+		if self.cat == check_cat:
+			return True
+		else:
+			return False
 
 	
 	def checkBits(self, bits):

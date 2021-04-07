@@ -17,6 +17,8 @@ class ClearWeather():
 	admin = True
 	
 	cheer = 2
+	
+	cat = 'weather'
 
 	@loop(seconds = 1)
 	async def loop_func(self):
@@ -25,6 +27,12 @@ class ClearWeather():
                                 resp = mcr.command('/weather clear')
                                 #print (resp)
                                 mcr.disconnect()
+								
+	def checkCat(self, check_cat):
+		if self.cat == check_cat:
+			return True
+		else:
+			return False
 								
 	def checkBits(self, bits):
 		if bits == self.cheer:

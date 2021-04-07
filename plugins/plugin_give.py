@@ -18,10 +18,18 @@ class Give():
 
 	admin = True
 	
+	cat = 'character'
+	
 	cheer = [
 		[7,'stone'],
 		[14,'diamond']
 		]
+		
+	def checkCat(self, check_cat):
+		if self.cat == check_cat:
+			return True
+		else:
+			return False
 
 	
 	def checkBits(self, bits):

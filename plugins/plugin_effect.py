@@ -18,11 +18,18 @@ class Effect():
 
 	admin = True
 	
+	cat = 'character'
+	
 	cheer = [
 		[91,'fire_resistance'],
 		[102,'poison']
 		]
 
+	def checkCat(self, check_cat):
+		if self.cat == check_cat:
+			return True
+		else:
+			return False
 	
 	def checkBits(self, bits):
 		found = False

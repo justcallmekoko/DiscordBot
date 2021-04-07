@@ -98,10 +98,16 @@ def threaded_twitch():
 		if ((not re.search('[a-zA-Z]', str(cheer_amount))) and (not bad_char_found)):
 			cheer_amount = re.sub("[^0-9]", "", str(cheer_amount))
 			if (contained_cheer) and (int(cheer_amount) > 0):
-				# Stop all plugins first
+				# Get bot category
 				for obj in obj_list:
-					print('Stopping: ' + str(obj.name))
-					run_stop = asyncio.run(obj.stop(resp))
+					if obj.checkBits(int(cheer_amount)):
+						cat = obj.cat
+						
+				# Stop all plugins with same category
+				for obj in obj_list:
+					if obj.checkCat(cat):
+						print('Stopping: ' + str(obj.name))
+						run_stop = asyncio.run(obj.stop(resp))
 					#await obj.stop(resp)
 					
 				# Find the plugin with the cheer amount

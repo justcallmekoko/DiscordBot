@@ -17,6 +17,14 @@ class Thunder():
 	admin = True
 	
 	cheer = 19
+	
+	cat = 'weather'
+	
+	def checkCat(self, check_cat):
+		if self.cat == check_cat:
+			return True
+		else:
+			return False
 
 	@loop(seconds = 1)
 	async def loop_func(self):

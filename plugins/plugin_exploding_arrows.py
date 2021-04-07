@@ -17,6 +17,8 @@ class ExplodingArrows():
 	admin = True
 	
 	cheer = 61
+	
+	cat = 'arrows'
 
 	@loop(seconds = 0.1)
 	async def loop_func(self):
@@ -26,6 +28,12 @@ class ExplodingArrows():
 				resp = mcr.command('/kill @e[type=arrow,nbt={inGround:1b}]')
 				#print (resp)
 				mcr.disconnect()
+				
+	def checkCat(self, check_cat):
+		if self.cat == check_cat:
+			return True
+		else:
+			return False
 			
 	def checkBits(self, bits):
 		if bits == self.cheer:

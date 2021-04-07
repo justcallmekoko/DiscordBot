@@ -19,6 +19,14 @@ class Kill():
 	admin = True
 	
 	cheer = 503
+	
+	cat = 'character'
+	
+	def checkCat(self, check_cat):
+		if self.cat == check_cat:
+			return True
+		else:
+			return False
 
 	
 	def checkBits(self, bits):

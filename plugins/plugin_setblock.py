@@ -19,6 +19,14 @@ class Setblock():
 	admin = True
 	
 	cheer = 1
+	
+	cat = 'spawn'
+	
+	def checkCat(self, check_cat):
+		if self.cat == check_cat:
+			return True
+		else:
+			return False
 
 	
 	def checkBits(self, bits):

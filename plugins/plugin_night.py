@@ -19,6 +19,14 @@ class Night():
 	admin = True
 	
 	cheer = 21
+	
+	cat = 'time'
+	
+	def checkCat(self, check_cat):
+		if self.cat == check_cat:
+			return True
+		else:
+			return False
 
 	
 	def checkBits(self, bits):
